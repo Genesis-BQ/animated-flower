@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flor animada</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 class="texto">Make each day your masterpiece</h1>
+    <div class="flower">
+        <div class="container container1">
+            <div class="stick"></div>
+            <div class="leafwrap">
+                <div class="leaf leaf1"></div>
+                <div class="leaf leaf2"></div>
+                <div class="leaf leaf3"></div>
+                <div class="leaf leaf4"></div>
+                <div class="leaf leaf5"></div>
+                <div class="leaf leaf6"></div>
+                <div class="leaf leaf7"></div>
+                <div class="leaf leaf8 fallDownYellow"></div>
+            </div>
+        </div>
+        <div class="container container2">
+            <div class="stick"></div>
+            <div class="leafwrap">
+                <div class="leaf leaf1"></div>
+                <div class="leaf leaf2"></div>
+                <div class="leaf leaf3"></div>
+                <div class="leaf leaf4"></div>
+                <div class="leaf leaf5"></div>
+                <div class="leaf leaf6"></div>
+                <div class="leaf leaf7"></div>
+                <div class="leaf leaf8 fallDownPink"></div>
+            </div>
+        </div>
+        <div class="container container3">
+            <div class="stick"></div>
+            <div class="leafwrap">
+                <div class="leaf leaf1"></div>
+                <div class="leaf leaf2"></div>
+                <div class="leaf leaf3"></div>
+                <div class="leaf leaf4"></div>
+                <div class="leaf leaf5"></div>
+                <div class="leaf leaf6"></div>
+                <div class="leaf leaf7"></div>
+                <div class="leaf leaf8 fallDownPurple"></div>
+            </div>
+        </div>
+        <div class="flowerVase"></div>
+    </div>
+    <div class="audio-controls">
+        <button id="playPauseBtn" class="closed">Play</button>
+        <audio id="audio" src="Y2meta.app - Miley Cyrus - When I Look At You _ En Español (128 kbps).mp3"></audio>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const audio = document.getElementById('audio');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+
+            playPauseBtn.addEventListener('click', function () {
+                if (audio.paused) {
+                    audio.play();
+                    playPauseBtn.textContent = 'Pause';
+                } else {
+                    audio.pause();
+                    playPauseBtn.textContent = 'Play';
+                }
+            });
+
+            audio.addEventListener('ended', function () {
+                // La canción ha terminado, reiniciar la reproducción
+                audio.currentTime = 0.01; // Reiniciar el tiempo de reproducción
+                audio.play().then(_ => {
+                    playPauseBtn.textContent = 'Pause';
+                }).catch(error => {
+                    console.log("Error al intentar reproducir la canción:", error);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
